@@ -1,0 +1,21 @@
+{
+  "name": "skillcase-short-video-platform-backend",
+  "version": "1.0.0",
+  "description": "Milestone 1 backend setup for the short-video learning platform assignment.",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
