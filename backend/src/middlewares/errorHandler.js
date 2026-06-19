@@ -7,10 +7,15 @@ const errorHandler = (error, _request, response, next) => {
 
   console.error("Unhandled application error:", error.message);
 
-  return response.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json({
+  const statusCode = error.statusCode || HTTP_STATUS.INTERNAL_SERVER_ERROR;
+  const message =
+    error.statusCode ? error.message : API_MESSAGES.INTERNAL_SERVER_ERROR;
+  const errors = error.statusCode ? error.errors || [] : [];
+
+  return response.status(statusCode).json({
     success: false,
-    message: API_MESSAGES.INTERNAL_SERVER_ERROR,
-    errors: [],
+    message,
+    errors,
   });
 };
 
