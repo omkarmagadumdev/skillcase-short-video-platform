@@ -5,6 +5,7 @@ const HTTP_STATUS = {
   NOT_FOUND: 404,
   OK: 200,
   UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
   INTERNAL_SERVER_ERROR: 500,
 };
 
@@ -13,6 +14,11 @@ const API_MESSAGES = {
   EMAIL_ALREADY_EXISTS: "A user with this email already exists.",
   INVALID_CREDENTIALS: "Invalid email or password.",
   INVALID_TOKEN: "Invalid authentication token.",
+  COMMENT_CREATED_SUCCESS: "Comment created successfully.",
+  COMMENT_DELETED_SUCCESS: "Comment deleted successfully.",
+  COMMENT_NOT_FOUND: "Comment not found.",
+  COMMENTS_FETCH_SUCCESS: "Comments fetched successfully.",
+  FORBIDDEN_ACTION: "You are not authorized to perform this action.",
   LIKE_ALREADY_EXISTS: "Video is already liked by this user.",
   LIKE_CREATED_SUCCESS: "Video liked successfully.",
   LIKE_NOT_FOUND: "Like not found for this user and video.",
