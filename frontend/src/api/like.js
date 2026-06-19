@@ -1,18 +1,18 @@
 import api from "./axios";
 import getErrorMessage from "./getErrorMessage";
 
-export const registerUser = async (userData) => {
+export const likeVideo = async (videoId) => {
   try {
-    const response = await api.post("/auth/register", userData);
+    const response = await api.post(`/likes/${videoId}`);
     return response.data;
   } catch (error) {
     throw new Error(getErrorMessage(error));
   }
 };
 
-export const loginUser = async (credentials) => {
+export const unlikeVideo = async (videoId) => {
   try {
-    const response = await api.post("/auth/login", credentials);
+    const response = await api.delete(`/likes/${videoId}`);
     return response.data;
   } catch (error) {
     throw new Error(getErrorMessage(error));

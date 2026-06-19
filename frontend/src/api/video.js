@@ -1,9 +1,5 @@
 import api from "./axios";
-
-const getErrorMessage = (error) =>
-  error.response?.data?.message ??
-  error.message ??
-  "An unexpected error occurred.";
+import getErrorMessage from "./getErrorMessage";
 
 export const fetchVideos = async () => {
   try {
