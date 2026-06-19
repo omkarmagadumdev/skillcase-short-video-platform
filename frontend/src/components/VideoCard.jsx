@@ -1,7 +1,10 @@
 import React from "react";
 import VideoPlayer from "./VideoPlayer";
+import LikeButton from "./LikeButton";
+import BookmarkButton from "./BookmarkButton";
+import CommentSection from "./CommentSection";
 
-const VideoCard = React.memo(({ video }) => {
+const VideoCard = React.memo(({ video, hideControls = false }) => {
   return (
     <div
       style={{
@@ -23,10 +26,22 @@ const VideoCard = React.memo(({ video }) => {
             backgroundColor: "#eee",
             borderRadius: "4px",
             fontSize: "0.875rem",
+            marginBottom: "1rem"
           }}
         >
           {video.category}
         </span>
+        
+        {!hideControls && (
+          <>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
+              <LikeButton videoId={video.id} likeCount={video.likeCount} />
+              <BookmarkButton videoId={video.id} />
+            </div>
+            
+            <CommentSection videoId={video.id} />
+          </>
+        )}
       </div>
     </div>
   );
