@@ -5,7 +5,7 @@ import { fetchComments, createComment, deleteComment } from "../redux/slices/com
 const CommentSection = ({ videoId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [content, setContent] = useState("");
-  
+
   const dispatch = useDispatch();
   const { commentsByVideo, loadingByVideoId, errorByVideoId } = useSelector((state) => state.comment);
   const { user } = useSelector((state) => state.auth);
@@ -46,13 +46,13 @@ const CommentSection = ({ videoId }) => {
       {isOpen && (
         <div style={{ marginTop: "1rem" }}>
           {error && <div style={{ color: "red", marginBottom: "0.5rem" }}>{error}</div>}
-          
+
           <form onSubmit={handleAddComment} style={{ display: "flex", gap: "0.5rem", marginBottom: "1rem" }}>
-            <input 
-              type="text" 
-              value={content} 
-              onChange={(e) => setContent(e.target.value)} 
-              placeholder="Add a comment..." 
+            <input
+              type="text"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              placeholder="Add a comment..."
               style={{ flex: 1, padding: "0.5rem" }}
               disabled={loading}
             />
