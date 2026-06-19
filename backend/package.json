@@ -4,6 +4,7 @@
   "description": "Milestone 1 backend setup for the short-video learning platform assignment.",
   "main": "server.js",
   "scripts": {
+    "db:init": "node sql/initSchema.js",
     "dev": "nodemon server.js",
     "start": "node server.js"
   },
