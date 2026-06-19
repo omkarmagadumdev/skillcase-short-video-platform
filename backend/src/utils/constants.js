@@ -23,6 +23,10 @@ const API_MESSAGES = {
   USER_FETCH_SUCCESS: "Authenticated user fetched successfully.",
   USERNAME_ALREADY_EXISTS: "A user with this username already exists.",
   VALIDATION_ERROR: "Required fields are missing or invalid.",
+  VIDEO_CREATED_SUCCESS: "Video created successfully.",
+  VIDEO_FETCH_SUCCESS: "Video fetched successfully.",
+  VIDEO_NOT_FOUND: "Video not found.",
+  VIDEOS_FETCH_SUCCESS: "Videos fetched successfully.",
   HEALTH_CHECK_SUCCESS: "Backend service is healthy.",
   INTERNAL_SERVER_ERROR: "Internal server error.",
 };

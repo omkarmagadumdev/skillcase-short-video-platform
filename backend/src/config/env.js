@@ -1,3 +1,4 @@
+const path = require("path");
 const dotenv = require("dotenv");
 const { ENVIRONMENTS } = require("../utils/constants");
 
@@ -20,6 +21,10 @@ const config = {
   jwt: {
     expiresIn: process.env.JWT_EXPIRES_IN || "1d",
     secret: jwtSecret,
+  },
+  uploads: {
+    directoryPath: path.join(__dirname, "..", "uploads"),
+    publicPath: "/uploads",
   },
 };
 

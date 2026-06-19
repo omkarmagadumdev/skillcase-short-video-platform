@@ -1,16 +1,7 @@
-const { getPool } = require("../config");
+const path = require("path");
+const { config, getPool } = require("../config");
 const { API_MESSAGES, HTTP_STATUS } = require("../utils/constants");
 const createAppError = require("../utils/createAppError");
-
-const mapVideoRecord = (videoRecord) => ({
-  category: videoRecord.category,
-  createdAt: videoRecord.created_at,
-  description: videoRecord.description,
-  filePath: videoRecord.file_path,
-  id: videoRecord.id,
-  likeCount: videoRecord.like_count,
-  title: videoRecord.title,
-});
 
 const videoSelectColumns = `
   id,
@@ -21,6 +12,22 @@ const videoSelectColumns = `
   like_count,
   created_at
 `;
+
+const buildPublicFileUrl = (filePath) => {
+  const fileName = path.basename(filePath || "");
+
+  return `${config.uploads.publicPath}/${encodeURIComponent(fileName)}`;
+};
+
+const mapVideoRecord = (videoRecord) => ({
+  category: videoRecord.category,
+  createdAt: videoRecord.created_at,
+  description: videoRecord.description,
+  fileUrl: buildPublicFileUrl(videoRecord.file_path),
+  id: videoRecord.id,
+  likeCount: videoRecord.like_count,
+  title: videoRecord.title,
+});
 
 const findVideoById = async (videoId) => {
   const pool = getPool();
