@@ -25,10 +25,21 @@ export const register = createAsyncThunk(
   }
 );
 
+const storedToken = localStorage.getItem("token");
+const storedUser = localStorage.getItem("user");
+
+let parsedUser = null;
+
+try {
+  parsedUser = storedUser ? JSON.parse(storedUser) : null;
+} catch {
+  parsedUser = null;
+}
+
 const initialState = {
-  user: null,
-  token: null,
-  isAuthenticated: false,
+  user: parsedUser,
+  token: storedToken,
+  isAuthenticated: !!storedToken,
   loginLoading: false,
   loginError: null,
   registerLoading: false,
@@ -50,6 +61,8 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.loginError = null;
       state.registerError = null;
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
     },
   },
   extraReducers: (builder) => {
@@ -61,9 +74,18 @@ const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.loginLoading = false;
+
         state.isAuthenticated = true;
+
         state.user = action.payload.data.user;
         state.token = action.payload.data.token;
+
+        // New
+        localStorage.setItem("token", action.payload.data.token);
+        localStorage.setItem(
+          "user",
+          JSON.stringify(action.payload.data.user)
+        );
       })
       .addCase(login.rejected, (state, action) => {
         state.loginLoading = false;

@@ -1,11 +1,21 @@
-import { NavLink } from "react-router-dom";
-import { HOME, BOOKMARKS } from "../utils/routes";
+import { useDispatch } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { clearCredentials } from "../redux/slices/authSlice";
+import { HOME, BOOKMARKS, LOGIN } from "../utils/routes";
 
 const Navigation = () => {
   const activeStyle = {
     fontWeight: "bold",
     textDecoration: "underline",
     color: "#000",
+  };
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(clearCredentials());
+    navigate(LOGIN);
   };
 
   const defaultStyle = {
@@ -28,6 +38,9 @@ const Navigation = () => {
       >
         Bookmarks
       </NavLink>
+      <button onClick={handleLogout} style={{ marginLeft: "auto", padding: "0.5rem 1rem", cursor: "pointer" }}>
+        Logout
+      </button>
     </nav>
   );
 };

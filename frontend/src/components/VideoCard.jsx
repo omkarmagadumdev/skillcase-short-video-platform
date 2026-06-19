@@ -31,14 +31,14 @@ const VideoCard = React.memo(({ video, hideControls = false }) => {
         >
           {video.category}
         </span>
-        
+
         {!hideControls && (
           <>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
               <LikeButton videoId={video.id} likeCount={video.likeCount} />
               <BookmarkButton videoId={video.id} />
             </div>
-            
+
             <CommentSection videoId={video.id} />
           </>
         )}
