@@ -11,6 +11,11 @@ const HTTP_STATUS = {
 
 const API_MESSAGES = {
   AUTHENTICATION_REQUIRED: "Authentication is required.",
+  BOOKMARK_ALREADY_EXISTS: "Video is already bookmarked.",
+  BOOKMARK_CREATED_SUCCESS: "Video bookmarked successfully.",
+  BOOKMARK_NOT_FOUND: "Bookmark not found.",
+  BOOKMARK_REMOVED_SUCCESS: "Bookmark removed successfully.",
+  BOOKMARKS_FETCH_SUCCESS: "Bookmarks fetched successfully.",
   EMAIL_ALREADY_EXISTS: "A user with this email already exists.",
   INVALID_CREDENTIALS: "Invalid email or password.",
   INVALID_TOKEN: "Invalid authentication token.",
