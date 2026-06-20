@@ -88,7 +88,7 @@ It showcases a modern React + Redux frontend, an Express.js REST API, PostgreSQL
 
 | Home Feed | Bookmarks |
 |-----------|-----------|
-| ![](docs/screenshots/home.png) | ![](docs/screenshots/bookmarks.png) |
+| ![](docs/screenshots/home.png) | ![](docs/screenshots/bookmark.png) |
 
 | Comments | Mobile View |
 |----------|-------------|
