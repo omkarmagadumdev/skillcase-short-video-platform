@@ -1,0 +1,96 @@
+.action-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    width: 56px;
+    padding: 6px 0;
+
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+
+    transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.action-button:hover {
+    transform: scale(1.06);
+}
+
+.action-button:active {
+    transform: scale(0.95);
+}
+
+.action-button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.action-button svg {
+    font-size: 30px;
+    color: #fff;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+    transition: transform 0.18s ease, color 0.18s ease, opacity 0.18s ease;
+}
+
+.action-button span {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.action-button .liked {
+    color: #ff3040;
+    animation: like-pop 0.32s ease;
+}
+
+.action-button--bookmark-saved svg {
+    color: #ffd166;
+    animation: bookmark-scale 0.28s ease;
+}
+
+.action-button--mute svg {
+    animation: mute-fade 0.22s ease;
+}
+
+@keyframes like-pop {
+    0% {
+        transform: scale(0.7);
+    }
+
+    55% {
+        transform: scale(1.25);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes bookmark-scale {
+    0% {
+        transform: scale(0.6);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes mute-fade {
+    0% {
+        opacity: 0.2;
+        transform: scale(0.85);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

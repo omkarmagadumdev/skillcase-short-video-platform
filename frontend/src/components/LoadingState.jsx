@@ -1,12 +1,10 @@
+import "./LoadingState.css";
+
 const LoadingState = ({ message = "Loading..." }) => {
     return (
-        <div
-            style={{
-                padding: "2rem",
-                textAlign: "center",
-            }}
-        >
-            {message}
+        <div className="loading-state">
+            <div className="loading-spinner" aria-hidden="true" />
+            <p className="loading-message">{message}</p>
         </div>
     );
 };

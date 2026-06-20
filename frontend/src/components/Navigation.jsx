@@ -1,15 +1,12 @@
 import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
+import { FaHome, FaBookmark } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
 import { clearCredentials } from "../redux/slices/authSlice";
 import { HOME, BOOKMARKS, LOGIN } from "../utils/routes";
+import "./Navigation.css";
 
 const Navigation = () => {
-  const activeStyle = {
-    fontWeight: "bold",
-    textDecoration: "underline",
-    color: "#000",
-  };
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -18,30 +15,34 @@ const Navigation = () => {
     navigate(LOGIN);
   };
 
-  const defaultStyle = {
-    textDecoration: "none",
-    color: "#555",
-  };
+  const linkClass = ({ isActive }) =>
+    isActive ? "nav-link nav-link--active" : "nav-link";
 
   return (
-    <nav style={{ padding: "1rem", borderBottom: "1px solid #ccc", marginBottom: "2rem", display: "flex", gap: "1rem" }}>
-      <NavLink
-        to={HOME}
-        style={({ isActive }) => (isActive ? activeStyle : defaultStyle)}
-        end
-      >
-        Home
-      </NavLink>
-      <NavLink
-        to={BOOKMARKS}
-        style={({ isActive }) => (isActive ? activeStyle : defaultStyle)}
-      >
-        Bookmarks
-      </NavLink>
-      <button onClick={handleLogout} style={{ marginLeft: "auto", padding: "0.5rem 1rem", cursor: "pointer" }}>
-        Logout
-      </button>
-    </nav>
+    <header className="nav-floating">
+      <nav className="nav-pill nav-pill--left">
+        <NavLink to={HOME} className={linkClass}>
+          <FaHome />
+          <span>Home</span>
+        </NavLink>
+
+        <NavLink to={BOOKMARKS} className={linkClass}>
+          <FaBookmark />
+          <span>Bookmarks</span>
+        </NavLink>
+      </nav>
+
+      <div className="nav-pill nav-pill--right">
+        <button
+          type="button"
+          className="nav-logout"
+          onClick={handleLogout}
+        >
+          <FiLogOut />
+          <span>Logout</span>
+        </button>
+      </div>
+    </header>
   );
 };
 

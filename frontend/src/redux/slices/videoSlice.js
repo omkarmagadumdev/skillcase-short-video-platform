@@ -7,7 +7,10 @@ export const fetchVideos = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await apiFetchVideos();
-      return response.data.videos;
+      return response.data.videos.map((video) => ({
+        ...video,
+        fileUrl: `http://localhost:5000${video.fileUrl}`,
+      }));
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -39,12 +42,16 @@ const videoSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(likeVideo.fulfilled, (state, action) => {
-        const video = state.videos.find(v => v.id === action.payload);
-        if (video) video.likeCount = (video.likeCount || 0) + 1;
+        const video = state.videos.find((v) => v.id === action.payload);
+        if (!video || video.isLiked) return;
+        video.isLiked = true;
+        video.likeCount = (video.likeCount || 0) + 1;
       })
       .addCase(unlikeVideo.fulfilled, (state, action) => {
-        const video = state.videos.find(v => v.id === action.payload);
-        if (video && video.likeCount > 0) video.likeCount -= 1;
+        const video = state.videos.find((v) => v.id === action.payload);
+        if (!video || !video.isLiked) return;
+        video.isLiked = false;
+        video.likeCount = Math.max((video.likeCount || 0) - 1, 0);
       });
   },
 });

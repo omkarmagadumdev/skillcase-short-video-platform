@@ -1,18 +1,26 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { FaVideo } from "react-icons/fa";
 import { fetchVideos } from "../redux/slices/videoSlice";
+import { fetchBookmarks } from "../redux/slices/bookmarkSlice";
 import VideoCard from "../components/VideoCard";
 import LoadingState from "../components/LoadingState";
 import EmptyState from "../components/EmptyState";
+import "./Home.css";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { videos, loading, error } = useSelector((state) => state.video);
+
+  const { videos, loading, error } = useSelector(
+    (state) => state.video
+  );
 
   useEffect(() => {
     if (videos.length === 0) {
       dispatch(fetchVideos());
     }
+
+    dispatch(fetchBookmarks());
   }, [dispatch, videos.length]);
 
   if (loading && videos.length === 0) {
@@ -21,22 +29,32 @@ const Home = () => {
 
   if (error) {
     return (
-      <div style={{ padding: "2rem", textAlign: "center", color: "red" }}>
-        {error}
-      </div>
+      <EmptyState
+        message="Something went wrong"
+        hint={error}
+        icon={FaVideo}
+      />
     );
   }
 
   if (!videos || videos.length === 0) {
-    return <EmptyState message="No videos found. Check back later!" />;
+    return (
+      <EmptyState
+        message="No videos found"
+        hint="Check back in a moment — new videos drop here."
+        icon={FaVideo}
+      />
+    );
   }
 
   return (
-    <div style={{ maxWidth: "600px", margin: "0 auto", padding: "1rem" }}>
+    <main className="home-container">
       {videos.map((video) => (
-        <VideoCard key={video.id} video={video} />
+        <section className="video-section" key={video.id}>
+          <VideoCard video={video} />
+        </section>
       ))}
-    </div>
+    </main>
   );
 };
 

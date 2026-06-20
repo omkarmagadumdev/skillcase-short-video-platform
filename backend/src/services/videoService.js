@@ -25,6 +25,7 @@ const mapVideoRecord = (videoRecord) => ({
   description: videoRecord.description,
   fileUrl: buildPublicFileUrl(videoRecord.file_path),
   id: videoRecord.id,
+  isLiked: Boolean(videoRecord.is_liked),
   likeCount: videoRecord.like_count,
   title: videoRecord.title,
 });
@@ -60,14 +61,25 @@ const createVideo = async ({ category, description, filePath, title }) => {
   return mapVideoRecord(result.rows[0]);
 };
 
-const getAllVideos = async () => {
+const getAllVideos = async (userId) => {
   const pool = getPool();
   const query = {
     text: `
-      SELECT ${videoSelectColumns}
-      FROM videos
-      ORDER BY created_at DESC
+      SELECT
+        v.id,
+        v.title,
+        v.description,
+        v.category,
+        v.file_path,
+        v.like_count,
+        v.created_at,
+        (l.user_id IS NOT NULL) AS is_liked
+      FROM videos v
+      LEFT JOIN likes l
+        ON l.video_id = v.id AND l.user_id = $1
+      ORDER BY v.created_at DESC
     `,
+    values: [userId],
   };
   const result = await pool.query(query);
 

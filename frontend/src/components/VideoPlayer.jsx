@@ -1,20 +1,59 @@
+import { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
+import "./VideoPlayer.css";
+
 const VideoPlayer = ({ url }) => {
-    const fullUrl = `http://localhost:5000${url}`;
+    const videoRef = useRef(null);
+    const muted = useSelector((state) => state.player.muted);
+
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    video.play().catch(() => { });
+                } else {
+                    video.pause();
+                }
+            },
+            { threshold: 0.7 }
+        );
+
+        observer.observe(video);
+
+        return () => observer.disconnect();
+    }, []);
+
+    const handleLoadedData = () => {
+        videoRef.current?.play().catch(() => { });
+    };
+
+    const handleVideoClick = () => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        if (video.paused) {
+            video.play().catch(() => { });
+        } else {
+            video.pause();
+        }
+    };
 
     return (
         <video
-            controls
-            preload="metadata"
+            ref={videoRef}
+            src={url}
+            className="video-player"
+            muted={muted}
+            loop
             playsInline
-            style={{
-                width: "100%",
-                height: "600px",
-                objectFit: "contain",
-                background: "#000",
-            }}
-        >
-            <source src={fullUrl} type="video/mp4" />
-        </video>
+            autoPlay
+            preload="auto"
+            onLoadedData={handleLoadedData}
+            onClick={handleVideoClick}
+        />
     );
 };
 

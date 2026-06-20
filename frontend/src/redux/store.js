@@ -4,6 +4,7 @@ import videoReducer from "./slices/videoSlice";
 import likeReducer from "./slices/likeSlice";
 import commentReducer from "./slices/commentSlice";
 import bookmarkReducer from "./slices/bookmarkSlice";
+import playerReducer from "./slices/playerSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     like: likeReducer,
     comment: commentReducer,
     bookmark: bookmarkReducer,
+    player: playerReducer,
   },
 });
 
