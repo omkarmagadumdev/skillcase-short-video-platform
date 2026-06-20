@@ -101,20 +101,18 @@ const bookmarkSlice = createSlice({
           (v) => v.id === action.payload
         );
 
-        if (!video || video.isLiked) return;
-
-        video.isLiked = true;
-        video.likeCount = (video.likeCount || 0) + 1;
+        if (video) {
+          video.likeCount = (video.likeCount || 0) + 1;
+        }
       })
       .addCase(unlikeVideo.fulfilled, (state, action) => {
         const video = state.bookmarks.find(
           (v) => v.id === action.payload
         );
 
-        if (!video || !video.isLiked) return;
-
-        video.isLiked = false;
-        video.likeCount = Math.max((video.likeCount || 0) - 1, 0);
+        if (video && video.likeCount > 0) {
+          video.likeCount -= 1;
+        }
       });
   },
 });

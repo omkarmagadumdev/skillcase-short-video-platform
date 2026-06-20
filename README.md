@@ -1,6 +1,6 @@
 # Skillcase Shorts
 
-A full-stack short-video platform inspired by YouTube Shorts and Instagram Reels. Built for the Skillcase Intern Assessment.
+A full-stack short-video platform inspired by YouTube Shorts and Instagram Reels. Built for the **Skillcase Frontend Internship Assessment**.
 
 ![Node](https://img.shields.io/badge/Node.js-20%2B-339933?logo=node.js&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-5.x-000000?logo=express&logoColor=white)
@@ -9,9 +9,26 @@ A full-stack short-video platform inspired by YouTube Shorts and Instagram Reels
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
 ![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-2.x-764ABC?logo=redux&logoColor=white)
 
-A vertical, full-screen video feed with authentication, likes, comments, and bookmarks — backed by a PostgreSQL database and a clean Express API.
+## Tech Stack
+
+React • Redux Toolkit • Vite • Express.js • PostgreSQL • JWT • Axios
+
+This project is a full-stack short-video platform inspired by YouTube Shorts and Instagram Reels, built as part of the Skillcase Frontend Internship Assessment.
+
+It showcases a modern React + Redux frontend, an Express.js REST API, PostgreSQL database design, JWT authentication, and a responsive user experience with autoplay, likes, comments, bookmarks, and protected routes.
 
 ---
+## Highlights
+
+- 🔐 JWT Authentication
+- 📱 Responsive YouTube Shorts–style UI
+- ❤️ Likes, Comments & Bookmarks
+- 🎬 Autoplay using Intersection Observer
+- 🔊 Global Mute / Unmute
+- ⚡ Redux Toolkit State Management
+- 🗄️ PostgreSQL Database
+- 🛡️ Protected Routes
+
 
 ## Table of contents
 
@@ -57,21 +74,25 @@ A vertical, full-screen video feed with authentication, likes, comments, and boo
 | Frontend | React 19, Vite, Redux Toolkit, React Router 6, Axios, react-icons |
 | Backend | Node.js, Express 5, pg, bcrypt, jsonwebtoken, dotenv, cors |
 | Database | PostgreSQL 15+ |
-| Tooling | npm workspaces (root), nodemon |
+| Tooling | Vite, Nodemon, ESLint, npm |
 
 ---
 
+
+
 ## Screenshots
 
-> Replace these with your captured PNGs before submission.
+| Login | Register |
+|--------|----------|
+| ![](docs/screenshots/login.png) | ![](docs/screenshots/register.png) |
 
-| Login | Feed (desktop) | Feed (mobile) |
-|---|---|---|
-| ![Login](./docs/screens/login.png) | ![Home desktop](./docs/screens/home-desktop.png) | ![Home mobile](./docs/screens/home-mobile.png) |
+| Home Feed | Bookmarks |
+|-----------|-----------|
+| ![](docs/screenshots/home.png) | ![](docs/screenshots/bookmarks.png) |
 
-| Bookmarks | Comments | Empty state |
-|---|---|---|
-| ![Bookmarks](./docs/screens/bookmarks.png) | ![Comments](./docs/screens/comments.png) | ![Empty](./docs/screens/empty.png) |
+| Comments | Mobile View |
+|----------|-------------|
+| ![](docs/screenshots/comments.png) | ![](docs/screenshots/mobile.png) |
 
 ---
 
@@ -414,4 +435,40 @@ cd frontend && npm run dev     # http://localhost:5173
 - `node_modules/` and `dist/` are gitignored on both sides.
 - The repo runs end-to-end with the four commands in [Installation & run](#installation--run) plus a one-time seed.
 
-Built for the **Skillcase Intern Assessment**.
+
+
+## Assignment Checklist
+
+✔ User Registration
+
+✔ Login
+
+✔ JWT Authentication
+
+✔ Protected Routes
+
+✔ Video Feed
+
+✔ Autoplay
+
+✔ Like
+
+✔ Comment
+
+✔ Bookmark
+
+✔ PostgreSQL
+
+✔ REST API
+
+✔ Responsive Design
+
+✔ Redux Toolkit
+
+✔ Error Handling
+
+✔ README
+
+## License
+
+This project was developed solely for the Skillcase Frontend Internship Assessment.
