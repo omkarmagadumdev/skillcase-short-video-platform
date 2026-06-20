@@ -1,24 +1,46 @@
+import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
-import { createBookmark, deleteBookmark } from "../redux/slices/bookmarkSlice";
+import {
+  createBookmark,
+  deleteBookmark,
+} from "../redux/slices/bookmarkSlice";
+import "./ActionButton.css";
 
 const BookmarkButton = ({ videoId }) => {
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.bookmark);
 
-  const handleBookmark = () => {
-    dispatch(createBookmark(videoId));
-  };
+  const { loading, bookmarks } = useSelector(
+    (state) => state.bookmark
+  );
 
-  const handleRemoveBookmark = () => {
-    dispatch(deleteBookmark(videoId));
+  const saved = bookmarks.some(
+    (bookmark) =>
+      bookmark.id === videoId || bookmark.videoId === videoId
+  );
+
+  const handleBookmark = async () => {
+    if (saved) {
+      await dispatch(deleteBookmark(videoId));
+    } else {
+      await dispatch(createBookmark(videoId));
+    }
   };
 
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-      <button onClick={handleBookmark} disabled={loading}>Bookmark</button>
-      <button onClick={handleRemoveBookmark} disabled={loading}>Remove Bookmark</button>
-      {error && <span style={{ color: "red", fontSize: "0.8rem" }}>{error}</span>}
-    </div>
+    <button
+      type="button"
+      className={
+        saved
+          ? "action-button action-button--bookmark-saved"
+          : "action-button"
+      }
+      onClick={handleBookmark}
+      disabled={loading}
+      aria-label={saved ? "Remove bookmark" : "Save bookmark"}
+    >
+      {saved ? <BsBookmarkFill /> : <BsBookmark />}
+      <span>Save</span>
+    </button>
   );
 };
 

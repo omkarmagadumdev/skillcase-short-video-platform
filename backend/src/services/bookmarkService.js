@@ -14,6 +14,7 @@ const mapVideoRecord = (videoRecord) => ({
   description: videoRecord.description,
   fileUrl: buildPublicFileUrl(videoRecord.file_path),
   id: videoRecord.id,
+  isLiked: Boolean(videoRecord.is_liked),
   likeCount: videoRecord.like_count,
   title: videoRecord.title,
 });
@@ -81,11 +82,20 @@ const getBookmarks = async (userId) => {
 
   const result = await pool.query(
     `
-      SELECT v.id, v.title, v.description, v.category, v.file_path, v.like_count, v.created_at
+      SELECT
+        v.id,
+        v.title,
+        v.description,
+        v.category,
+        v.file_path,
+        v.like_count,
+        v.created_at,
+        (l.user_id IS NOT NULL) AS is_liked
       FROM videos v
       INNER JOIN bookmarks b ON v.id = b.video_id
+      LEFT JOIN likes l ON l.video_id = v.id AND l.user_id = $1
       WHERE b.user_id = $1
-      -- videos.created_at is intentionally used as the closest available ordering 
+      -- videos.created_at is intentionally used as the closest available ordering
       -- because bookmark timestamps are not present in the provided schema.
       ORDER BY v.created_at DESC
     `,

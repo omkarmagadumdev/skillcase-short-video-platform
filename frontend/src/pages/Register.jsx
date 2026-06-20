@@ -58,14 +58,14 @@ const Register = () => {
 
   return (
     <AuthForm
-      title="Register"
+      title="Create account"
       fields={fields}
-      buttonText="Register"
+      buttonText="Sign up"
       loading={registerLoading}
       error={registerError || validationError}
       onSubmit={handleSubmit}
       footerText="Already have an account?"
-      footerLinkText="Login"
+      footerLinkText="Sign in"
       footerLinkTo={LOGIN}
     />
   );

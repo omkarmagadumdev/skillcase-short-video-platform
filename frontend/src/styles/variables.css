@@ -1,0 +1,24 @@
+:root {
+    --background: #000000;
+    --surface: #111827;
+
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+
+    --accent: #ff3b5c;
+    --accent-hover: #ff5c78;
+
+    --border: rgba(255, 255, 255, 0.08);
+
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+
+    --transition: 0.25s ease;
+}

@@ -50,14 +50,14 @@ const Login = () => {
 
   return (
     <AuthForm
-      title="Login"
+      title="Welcome back"
       fields={fields}
-      buttonText="Login"
+      buttonText="Sign in"
       loading={loginLoading}
       error={loginError || validationError}
       onSubmit={handleSubmit}
       footerText="Don't have an account?"
-      footerLinkText="Register"
+      footerLinkText="Create one"
       footerLinkTo={REGISTER}
     />
   );

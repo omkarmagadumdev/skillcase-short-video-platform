@@ -49,9 +49,9 @@ const create = async (request, response, next) => {
   }
 };
 
-const getAll = async (_request, response, next) => {
+const getAll = async (request, response, next) => {
   try {
-    const videos = await videoService.getAllVideos();
+    const videos = await videoService.getAllVideos(request.user.id);
 
     return response.status(HTTP_STATUS.OK).json({
       success: true,

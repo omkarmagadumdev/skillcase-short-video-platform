@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./AuthForm.css";
 
 const AuthForm = ({
   title,
@@ -12,41 +13,60 @@ const AuthForm = ({
   footerLinkTo,
 }) => {
   return (
-    <div style={{ maxWidth: "400px", margin: "2rem auto", padding: "1rem" }}>
-      <h2>{title}</h2>
-      {error && (
-        <div style={{ color: "red", marginBottom: "1rem" }}>{error}</div>
-      )}
-      <form
-        onSubmit={onSubmit}
-        style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
-      >
-        {fields.map((field) => (
-          <div key={field.id}>
-            <label htmlFor={field.id}>{field.label}</label>
-            <br />
-            <input
-              id={field.id}
-              type={field.type}
-              value={field.value}
-              onChange={field.onChange}
-              disabled={loading}
-              style={{
-                width: "100%",
-                padding: "0.5rem",
-                marginTop: "0.25rem",
-              }}
-            />
-          </div>
-        ))}
-        <button type="submit" disabled={loading} style={{ padding: "0.5rem" }}>
-          {loading ? "Loading..." : buttonText}
-        </button>
-      </form>
-      <div style={{ marginTop: "1rem" }}>
-        {footerText} <Link to={footerLinkTo}>{footerLinkText}</Link>
+    <main className="auth-page">
+      <div className="auth-backdrop" aria-hidden="true" />
+
+      <div className="auth-card">
+        <div className="auth-header">
+          <h1 className="auth-title">{title}</h1>
+          <p className="auth-subtitle">
+            Welcome to Skillcase Shorts.
+          </p>
+        </div>
+
+        {error && <div className="auth-error">{error}</div>}
+
+        <form className="auth-form" onSubmit={onSubmit}>
+          {fields.map((field) => (
+            <div key={field.id} className="auth-field">
+              <label htmlFor={field.id} className="auth-label">
+                {field.label}
+              </label>
+              <input
+                id={field.id}
+                className="auth-input"
+                type={field.type}
+                value={field.value}
+                onChange={field.onChange}
+                disabled={loading}
+                autoComplete={
+                  field.type === "password" ? "current-password" : "off"
+                }
+              />
+            </div>
+          ))}
+
+          <button
+            type="submit"
+            className="auth-submit"
+            disabled={loading}
+          >
+            {loading ? (
+              <span className="auth-spinner" aria-hidden="true" />
+            ) : (
+              buttonText
+            )}
+          </button>
+        </form>
+
+        <p className="auth-footer">
+          {footerText}{" "}
+          <Link to={footerLinkTo} className="auth-link">
+            {footerLinkText}
+          </Link>
+        </p>
       </div>
-    </div>
+    </main>
   );
 };
 

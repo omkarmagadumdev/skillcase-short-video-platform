@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -m 3 http://localhost:5000/health)",
+      "Bash(curl -s -m 3 http://localhost:5173)",
+      "Bash(curl *)",
+      "Bash(cmd.exe /c start \"\" \"http://localhost:5173/bookmarks\")",
+      "Bash(npm install *)",
+      "Bash(node *)",
+      "Bash(grep -E '\\\\.env$')",
+      "Bash(git check-ignore *)",
+      "Bash(grep -E '\\\\.mp4$|uploads')"
+    ]
+  }
+}
